@@ -28,8 +28,20 @@ void find_oddman( vector<int> &a , int i , int j , int &oddman)
 
     int n = j-i+1;  // Total number of elements in the array
     int partitions = 3; // number of partitions
-    int p3size = (n % 3);   // size of partition #3 . This can be variable
-    int psize = (n - p3size ) / 2; // size of partition 1 and 2.
+    int psize = n/3; // size of partition 1 and 2.
+    int p3size; // This is variable
+    if(n%3 <= 1)
+    {
+        int p3size = psize + (n%3);   // size of partition #3 .
+    } else {
+        // we are here because n%3 = 2.
+        // distribute the 2 additional elements to p1 and p2
+        // by incrementing psize
+        p3size = n/3;
+        psize++;
+
+    }
+
     int p1s,p1e,p2s,p2e,p3s,p3e; // start and end index of each of the 3 partitions
 
     p1s=i;
